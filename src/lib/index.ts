@@ -11,7 +11,6 @@ type Headers = {
 type Config = {
   hostUrl: string;
   contentType: contentType;
-  jwt?: string;
 };
 
 const defaultConfig: Config = {
@@ -24,13 +23,16 @@ let headers: Headers;
 
 const install = (setting: Config) => {
   const set = { ...defaultConfig, ...setting };
-  const { hostUrl, contentType, jwt } = set;
+  const { hostUrl, contentType } = set;
 
   host = hostUrl.slice(-1) === '/' ? hostUrl.slice(0, -1) : hostUrl;
   headers = {
     'Content-Type': contentType,
-    jwt: `Bearer ${jwt}`,
   };
+};
+
+const setJWT = (jwt: string) => {
+  headers.jwt = jwt;
 };
 
 const post = (api: String = '/api', data: Object) => {
@@ -68,6 +70,7 @@ const Fetch = {
   install,
   post,
   get,
+  setJWT,
 };
 
 export default Fetch;

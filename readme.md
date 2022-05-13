@@ -22,8 +22,10 @@ import Fetch, { contentType } from 'lesca-sp88-fetch';
 Fetch.install({
   hostUrl: 'https://yourhost.com/api/',
   contentType: contentType.JSON,
-  jwt?: '2233.33sd.2w4s'  // jwt token
 });
+
+Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
+
 
 <button
   onClick={() => {
@@ -54,6 +56,7 @@ Fetch.install({
 | .**install**(**[config](#config)**:_object_)   | install first |         |
 | .**post**(**api**:_string_, **data**:_object_) |     POST      |         |
 | .**get**(**api**:_string_)                     |      GET      |         |
+| .**setJWT**(**token**):_string_                | set JWT Token |         |
 
 #### config
 
@@ -61,7 +64,6 @@ Fetch.install({
 const config = {
   hostUrl: 'yourHost', // string
   contentType: contentType.JSON, // enum contentType.JSON || contentType.URL_ENCODED
-  jwt?: 'a123.b345.122s.23d3', // [optional] jwt token
 };
 ```
 
