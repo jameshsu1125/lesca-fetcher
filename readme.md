@@ -17,19 +17,31 @@ install lesca-sp88-fetch --save
 ## Usage
 
 ```JSX
-import Fetcher from 'lesca-sp88-fetch';
+import Fetch, { contentType } from 'lesca-sp88-fetch';
 
-Fetcher.install('https://yourhost.com/api');
+Fetch.install({
+  hostUrl: 'https://yourhost.com/api/',
+  contentType: contentType.JSON,
+});
 
 <button
   onClick={() => {
     const api = '/save';
     const data = { name: 'myName', age: '18' };
-    Fetcher.post(api, data).then((e) => {
+    Fetch.post(api, data).then((e) => {
       console.log(e); // log result
     });
   }}
-/>;
+>post</div>;
+
+<button
+  onClick={() => {
+    const api = '/get';
+    Fetch.get(api).then((e) => {
+      console.log(e); // log result
+    });
+  }}
+>get</div>;
 ```
 
 ## Development
@@ -38,10 +50,19 @@ Fetcher.install('https://yourhost.com/api');
 
 | method                                         |  description  | default |
 | :--------------------------------------------- | :-----------: | ------: |
-| .**install**(**host**:_string_)                | install first |         |
-| .**post**(**api**:_string_, **data**:_object_) |   post data   |         |
+| .**install**(**[config](#config)**:_object_)   | install first |         |
+| .**post**(**api**:_string_, **data**:_object_) |     POST      |         |
+| .**get**(**api**:_string_)                     |      GET      |         |
+
+#### config
+
+```js
+const config = {
+  hostUrl: 'yourHost', // string
+  contentType: contentType.JSON, // enum contentType.JSON || contentType.URL_ENCODED
+};
+```
 
 ### Features
 
-- TypeScript
 - maintain if necessary
