@@ -5,7 +5,7 @@ export enum contentType {
 
 type Headers = {
   'Content-Type': contentType;
-  jwt?: string;
+  Authorization?: string;
 };
 
 type Config = {
@@ -32,7 +32,7 @@ const install = (setting: Config) => {
 };
 
 const setJWT = (jwt: string) => {
-  headers.jwt = jwt;
+  headers.Authorization = `Bearer ${jwt}`;
 };
 
 const post = (api: String = '/api', data: Object) => {
