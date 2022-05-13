@@ -5,10 +5,10 @@
   "main": "lib/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "watch": "babel src/lib -w -d lib --copy-files",
+    "watch": "babel --watch src/lib --out-dir lib --extensions '.ts,.tsx'",
     "op": "babel src/lib -d lib --copy-files",
     "dev": "concurrently \"npm run watch\" \"npm run start\"",
-    "rm": "rm -rf node_modules/ package-lock.json",
+    "rm": "rm -rf node_modules/ package-lock.json lib/",
     "deploy": "gh-pages -d dist",
     "build": "NODE_ENV=production webpack"
   },
@@ -26,6 +26,7 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@babel/preset-typescript": "^7.16.7",
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.6.2",
@@ -46,6 +47,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "style-loader": "^3.3.1",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.6.4",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.8.1"

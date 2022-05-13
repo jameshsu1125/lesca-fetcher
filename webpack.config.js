@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Meta = require('./template/template.meta');
+const template = './template/template.meta';
+const Meta = require(template);
 
 module.exports = {
   entry: path.join(__dirname, 'src/docs'),
@@ -13,6 +14,11 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         use: 'babel-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.tsx?$/,
+        use: ['babel-loader', 'ts-loader'],
         exclude: /node_modules/,
       },
       {
@@ -41,7 +47,7 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   devServer: {
     port: 8000,
