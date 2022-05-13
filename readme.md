@@ -11,7 +11,7 @@
 # Installation
 
 ```sh
-install lesca-sp88-fetch --save
+npm install lesca-sp88-fetch --save
 ```
 
 ## Usage
