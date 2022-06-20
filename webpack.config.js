@@ -50,7 +50,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js', '.jsx'],
   },
   devServer: {
-    port: 8080,
+    port: 8000,
     https: true,
   },
 };

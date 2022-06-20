@@ -48,8 +48,12 @@ const post = (api: String = '/api', data: Object) => {
 
   return new Promise((resovle, rejack) => {
     fetch(url, { method, body, headers })
-      .then((res) => res.json())
-      .then((e) => resovle(e))
+      .then((res) => {
+        res
+          .json()
+          .then((e) => resovle(e))
+          .catch((e) => rejack(e));
+      })
       .catch((e) => rejack(e));
   });
 };
@@ -60,7 +64,12 @@ const get = (api: String = '/api') => {
 
   return new Promise((resovle, rejack) => {
     fetch(url, { method, headers })
-      .then((res) => res.json())
+      .then((res) => {
+        res
+          .json()
+          .then((e) => resovle(e))
+          .catch((e) => rejack(e));
+      })
       .then((e) => resovle(e))
       .catch((e) => rejack(e));
   });

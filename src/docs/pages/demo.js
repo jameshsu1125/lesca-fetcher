@@ -35,9 +35,13 @@ const Demo = () => {
               title: 'foo',
               body: 'bar',
               userId: 1,
-            }).then((e) => {
-              setPostRespone(e);
-            });
+            })
+              .then((e) => {
+                setPostRespone(e);
+              })
+              .catch((e) => {
+                alert(e);
+              });
           }}
         >
           Post

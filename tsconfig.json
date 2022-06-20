@@ -2,7 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "outDir": "./lib/",
-    "target": "es5",
+    "target": "es2017",
     "module": "AMD",
     "declaration": true,
     "strict": true,
