@@ -70,7 +70,6 @@ const get = (api: String = '/api') => {
           .then((e) => resovle(e))
           .catch((e) => rejack(e));
       })
-      .then((e) => resovle(e))
       .catch((e) => rejack(e));
   });
 };
