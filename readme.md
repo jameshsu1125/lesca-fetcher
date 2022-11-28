@@ -51,13 +51,13 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 
 ### Methods
 
-| method                                                             |       description        | default |
-| :----------------------------------------------------------------- | :----------------------: | ------: |
-| .**install**(**[config](#config)**:_object_)                       |      install first       |         |
-| .**post**(**api**:_string_, **data**:_object_)                     |           POST           |         |
-| .**get**(**api**:_string_)                                         |           GET            |         |
-| .**setJWT**(**token**):_string_                                    |      set JWT Token       |         |
-| .**postWithoutJson**(**api**:_string_, **data**:_object_):_string_ | post but not exec json() |         |
+| method                                                           |    description     | default |
+| :--------------------------------------------------------------- | :----------------: | ------: |
+| .**install**(**[config](#config)**:_object_)                     |   install first    |         |
+| .**post**(**api**:_string_, **data**:_object_)                   |        POST        |         |
+| .**get**(**api**:_string_)                                       |        GET         |         |
+| .**setJWT**(**token**):_string_                                  |   set JWT Token    |         |
+| .**postStringify**(**api**:_string_, **data**:_object_):_string_ | post and stringify |         |
 
 #### config
 

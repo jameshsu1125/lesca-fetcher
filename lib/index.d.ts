@@ -11,6 +11,6 @@ declare const Fetch: {
     post: (api: String | undefined, data: Object) => Promise<unknown>;
     get: (api?: String) => Promise<unknown>;
     setJWT: (jwt: string) => void;
-    postWithoutJson: (api: String | undefined, data: Object) => Promise<unknown>;
+    postStringify: (api: String | undefined, data: Object) => Promise<unknown>;
 };
 export default Fetch;

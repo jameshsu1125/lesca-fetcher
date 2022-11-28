@@ -35,7 +35,7 @@ const setJWT = (jwt: string) => {
   headers.Authorization = `Bearer ${jwt}`;
 };
 
-const postWithoutJson = (api: String = '/api', data: Object) => {
+const postStringify = (api: String = '/api', data: Object) => {
   const method = 'POST';
   const url = api.slice(0, 1) === '/' ? `${host}${api}` : `${host}/${api}`;
 
@@ -48,7 +48,12 @@ const postWithoutJson = (api: String = '/api', data: Object) => {
 
   return new Promise((resovle, rejack) => {
     fetch(url, { method, body, headers })
-      .then((res) => resovle(res))
+      .then((res) => {
+        res
+          .text()
+          .then((e) => resovle(e))
+          .catch((e) => rejack(e));
+      })
       .catch((e) => rejack(e));
   });
 };
@@ -97,7 +102,7 @@ const Fetch = {
   post,
   get,
   setJWT,
-  postWithoutJson,
+  postStringify,
 };
 
 export default Fetch;
