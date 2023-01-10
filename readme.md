@@ -6,22 +6,23 @@
 [![React](https://img.shields.io/badge/-CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://www.w3schools.com/css/)
 [![NPM](https://img.shields.io/badge/DEV-Jameshsu1125-9cf?style=for-the-badge)](https://www.npmjs.com/~jameshsu1125)
 
-## a Module for developer.
+Integrate fetch for easier use.
 
 # Installation
 
 ```sh
-npm install lesca-sp88-fetch --save
+npm install lesca-fetcher --save
 ```
 
 ## Usage
 
 ```JSX
-import Fetch, { contentType } from 'lesca-sp88-fetch';
+import Fetch, { contentType, formatType } from 'lesca-fetcher';
 
 Fetch.install({
   hostUrl: 'https://yourhost.com/api/',
   contentType: contentType.JSON,
+  formatType: formatType.JSON,
 });
 
 Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
@@ -29,19 +30,21 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 
 <button
   onClick={() => {
-    const api = '/save';
+    const path = '/save';
     const data = { name: 'myName', age: '18' };
-    Fetch.post(api, data).then((e) => {
-      console.log(e); // log result
+    Fetch.post(path, data).then((respone) => {
+      // ...script
+      console.log(respone);
     });
   }}
 >post</div>;
 
 <button
   onClick={() => {
-    const api = '/get';
-    Fetch.get(api).then((e) => {
-      console.log(e); // log result
+    const path = '/get';
+    Fetch.get(path).then((respone) => {
+      // ...script
+      console.log(respone);
     });
   }}
 >get</div>;
@@ -63,8 +66,9 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 
 ```js
 const config = {
-  hostUrl: 'yourHost', // string
+  hostUrl: 'https://www.yourHost.com/api/', // string
   contentType: contentType.JSON, // enum contentType.JSON || contentType.URL_ENCODED
+  formatType: formatType.JSON, // enum formatType.JSON || formatType.string
 };
 ```
 

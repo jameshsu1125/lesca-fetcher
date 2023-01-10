@@ -13,14 +13,14 @@ const Menu = ({ setState, state }) => (
     >
       Demo
     </Button>
-    <Button
+    {/* <Button
       onClick={() => {
         setState('usage');
       }}
       disabled={state === 'usage'}
     >
       Usage
-    </Button>
+    </Button> */}
   </ButtonGroup>
 );
 

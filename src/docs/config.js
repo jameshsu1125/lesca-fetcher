@@ -1,4 +1,4 @@
 module.exports = {
-  name: 'lesca-sp88-fetch',
+  name: 'lesca-fetcher',
   description: '',
 };
