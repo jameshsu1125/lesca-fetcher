@@ -21,7 +21,7 @@ type Config = {
 
 const defaultConfig: Config = {
   hostUrl: 'https://jsonplaceholder.typicode.com/todos/1',
-  contentType: contentType.URL_ENCODED,
+  contentType: contentType.JSON,
   formatType: formatType.JSON,
 };
 
