@@ -44,9 +44,12 @@ const setJWT = (jwt: string) => {
   headers.Authorization = `Bearer ${jwt}`;
 };
 
+export const mergePath = (api: String = '/api') => {
+  return api.slice(0, 1) === '/' ? `${host}${api}` : `${host}/${api}`;
+};
+
 const post = (api: String = '/api', data: Object) => {
   const method = 'POST';
-  const url = api.slice(0, 1) === '/' ? `${host}${api}` : `${host}/${api}`;
 
   let body: any = JSON.stringify(data);
   if (headers['Content-Type'] === contentType.URL_ENCODED) {
@@ -55,45 +58,44 @@ const post = (api: String = '/api', data: Object) => {
       .join('&');
   }
 
-  return new Promise((resovle, rejack) => {
-    fetch(url, { method, body, headers })
+  return new Promise((resolve, reject) => {
+    fetch(mergePath(api), { method, body, headers })
       .then((res) => {
         if (format === formatType.JSON) {
           res
             .json()
-            .then((e) => resovle(e))
-            .catch((e) => rejack(e));
+            .then((e) => resolve(e))
+            .catch((e) => reject(e));
         } else {
           res
             .text()
-            .then((e) => resovle(e))
-            .catch((e) => rejack(e));
+            .then((e) => resolve(e))
+            .catch((e) => reject(e));
         }
       })
-      .catch((e) => rejack(e));
+      .catch((e) => reject(e));
   });
 };
 
 const get = (api: String = '/api') => {
   const method = 'GET';
-  const url = api.slice(0, 1) === '/' ? `${host}${api}` : `${host}/${api}`;
 
-  return new Promise((resovle, rejack) => {
-    fetch(url, { method, headers })
+  return new Promise((resolve, reject) => {
+    fetch(mergePath(api), { method, headers })
       .then((res) => {
         if (format === formatType.JSON) {
           res
             .json()
-            .then((e) => resovle(e))
-            .catch((e) => rejack(e));
+            .then((e) => resolve(e))
+            .catch((e) => reject(e));
         } else {
           res
             .text()
-            .then((e) => resovle(e))
-            .catch((e) => rejack(e));
+            .then((e) => resolve(e))
+            .catch((e) => reject(e));
         }
       })
-      .catch((e) => rejack(e));
+      .catch((e) => reject(e));
   });
 };
 

@@ -11,6 +11,7 @@ type Config = {
     contentType: contentType;
     formatType: formatType;
 };
+export declare const mergePath: (api?: String) => string;
 declare const Fetcher: {
     install: (setting: Config) => void;
     post: (api: String | undefined, data: Object) => Promise<unknown>;

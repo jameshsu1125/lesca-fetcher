@@ -32,9 +32,8 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
   onClick={() => {
     const path = '/save';
     const data = { name: 'myName', age: '18' };
-    Fetch.post(path, data).then((respone) => {
-      // ...script
-      console.log(respone);
+    Fetch.post(path, data).then((respond) => {
+      console.log(respond);
     });
   }}
 >post</div>;
@@ -42,9 +41,8 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 <button
   onClick={() => {
     const path = '/get';
-    Fetch.get(path).then((respone) => {
-      // ...script
-      console.log(respone);
+    Fetch.get(path).then((respond) => {
+      console.log(respond);
     });
   }}
 >get</div>;
@@ -61,6 +59,7 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 | .**get**(**api**:_string_)                                       |        GET         |         |
 | .**setJWT**(**token**):_string_                                  |   set JWT Token    |         |
 | .**postStringify**(**api**:_string_, **data**:_object_):_string_ | post and stringify |         |
+| .**mergePath**(**api**:_string_):_string_                        |   get full path    |         |
 
 #### config
 
