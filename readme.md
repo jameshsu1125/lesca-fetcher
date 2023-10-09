@@ -17,9 +17,9 @@ npm install lesca-fetcher --save
 ## Usage
 
 ```JSX
-import Fetch, { contentType, formatType } from 'lesca-fetcher';
+import Fetcher, { contentType, formatType } from 'lesca-fetcher';
 
-Fetch.install({
+Fetcher.install({
   hostUrl: 'https://yourhost.com/api/',
   contentType: contentType.JSON,
   formatType: formatType.JSON,
@@ -32,7 +32,7 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
   onClick={() => {
     const path = '/save';
     const data = { name: 'myName', age: '18' };
-    Fetch.post(path, data).then((respond) => {
+    Fetcher.post(path, data).then((respond) => {
       console.log(respond);
     });
   }}
@@ -41,7 +41,7 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 <button
   onClick={() => {
     const path = '/get';
-    Fetch.get(path).then((respond) => {
+    Fetcher.get(path).then((respond) => {
       console.log(respond);
     });
   }}
