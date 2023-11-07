@@ -17,6 +17,5 @@ declare const Fetcher: {
     post: (api: String | undefined, data: Object) => Promise<unknown>;
     get: (api?: String) => Promise<unknown>;
     setJWT: (jwt: string) => void;
-    setHeader: (parm: object) => void;
 };
 export default Fetcher;

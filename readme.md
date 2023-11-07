@@ -25,8 +25,7 @@ Fetcher.install({
   formatType: formatType.JSON,
 });
 
-Fetcher.setJWT('Fsr.956b6.67ktJGr'); // if necessary
-Fetcher.setHeader({ mode:'cores' }) // if necessary
+Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 
 
 <button
