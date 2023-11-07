@@ -28,6 +28,7 @@ const defaultConfig: Config = {
 let host: string;
 let headers: Headers;
 let format: formatType;
+let currentHeaders: object;
 
 const install = (setting: Config) => {
   const set = { ...defaultConfig, ...setting };
@@ -44,6 +45,10 @@ const setJWT = (jwt: string) => {
   headers.Authorization = `Bearer ${jwt}`;
 };
 
+const setHeader = (parm: object) => {
+  currentHeaders = parm;
+};
+
 export const mergePath = (api: String = '/api') => {
   return api.slice(0, 1) === '/' ? `${host}${api}` : `${host}/${api}`;
 };
@@ -58,8 +63,9 @@ const post = (api: String = '/api', data: Object) => {
       .join('&');
   }
 
+  const finalHeaders = { ...headers, ...currentHeaders };
   return new Promise((resolve, reject) => {
-    fetch(mergePath(api), { method, body, headers })
+    fetch(mergePath(api), { method, body, headers: finalHeaders })
       .then((res) => {
         if (format === formatType.JSON) {
           res
@@ -79,9 +85,10 @@ const post = (api: String = '/api', data: Object) => {
 
 const get = (api: String = '/api') => {
   const method = 'GET';
+  const finalHeaders = { ...headers, ...currentHeaders };
 
   return new Promise((resolve, reject) => {
-    fetch(mergePath(api), { method, headers })
+    fetch(mergePath(api), { method, headers: finalHeaders })
       .then((res) => {
         if (format === formatType.JSON) {
           res
@@ -104,6 +111,7 @@ const Fetcher = {
   post,
   get,
   setJWT,
+  setHeader,
 };
 
 export default Fetcher;
