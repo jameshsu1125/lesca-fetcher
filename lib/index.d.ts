@@ -14,8 +14,8 @@ type Config = {
 export declare const mergePath: (api?: String) => string;
 declare const Fetcher: {
     install: (setting: Config) => void;
-    post: (api: String | undefined, data: Object) => Promise<unknown>;
-    get: (api?: String) => Promise<unknown>;
+    post: <T>(api: String | undefined, data: Object) => Promise<T> | Promise<string>;
+    get: <T_1>(api?: String) => Promise<string> | Promise<T_1>;
     setJWT: (jwt: string) => void;
 };
 export default Fetcher;

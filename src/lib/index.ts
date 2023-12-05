@@ -48,7 +48,7 @@ export const mergePath = (api: String = '/api') => {
   return api.slice(0, 1) === '/' ? `${host}${api}` : `${host}/${api}`;
 };
 
-const post = (api: String = '/api', data: Object) => {
+const post = <T>(api: String = '/api', data: Object) => {
   const method = 'POST';
 
   let body: any = JSON.stringify(data);
@@ -58,45 +58,56 @@ const post = (api: String = '/api', data: Object) => {
       .join('&');
   }
 
-  return new Promise((resolve, reject) => {
-    fetch(mergePath(api), { method, body, headers })
-      .then((res) => {
-        if (format === formatType.JSON) {
+  if (format === formatType.JSON) {
+    return new Promise<T>((resolve, reject) => {
+      fetch(mergePath(api), { method, body, headers })
+        .then((res) => {
           res
             .json()
             .then((e) => resolve(e))
             .catch((e) => reject(e));
-        } else {
+        })
+        .catch((e) => reject(e));
+    });
+  } else {
+    return new Promise<string>((resolve, reject) => {
+      fetch(mergePath(api), { method, body, headers })
+        .then((res) => {
           res
             .text()
             .then((e) => resolve(e))
             .catch((e) => reject(e));
-        }
-      })
-      .catch((e) => reject(e));
-  });
+        })
+        .catch((e) => reject(e));
+    });
+  }
 };
 
-const get = (api: String = '/api') => {
+const get = <T>(api: String = '/api') => {
   const method = 'GET';
-
-  return new Promise((resolve, reject) => {
-    fetch(mergePath(api), { method, headers })
-      .then((res) => {
-        if (format === formatType.JSON) {
+  if (format === formatType.JSON) {
+    return new Promise<T>((resolve, reject) => {
+      fetch(mergePath(api), { method, headers })
+        .then((res) => {
           res
             .json()
             .then((e) => resolve(e))
             .catch((e) => reject(e));
-        } else {
+        })
+        .catch((e) => reject(e));
+    });
+  } else {
+    return new Promise<string>((resolve, reject) => {
+      fetch(mergePath(api), { method, headers })
+        .then((res) => {
           res
             .text()
             .then((e) => resolve(e))
             .catch((e) => reject(e));
-        }
-      })
-      .catch((e) => reject(e));
-  });
+        })
+        .catch((e) => reject(e));
+    });
+  }
 };
 
 const Fetcher = {
