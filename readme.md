@@ -25,8 +25,9 @@ Fetcher.install({
   formatType: formatType.JSON,
 });
 
-Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
+Fetcher.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 
+Fetcher.setHeader({ user:'user', password:'123456' }) // if necessary
 
 <button
   onClick={() => {
@@ -58,6 +59,7 @@ Fetch.setJWT('Fsr.956b6.67ktJGr'); // if necessary
 | .**post**(**api**:_string_, **data**:_object_)                   |        POST        |         |
 | .**get**(**api**:_string_)                                       |        GET         |         |
 | .**setJWT**(**token**):_string_                                  |   set JWT Token    |         |
+| .**setHeader**(**Objects**):_string_                             |     set Header     |         |
 | .**postStringify**(**api**:_string_, **data**:_object_):_string_ | post and stringify |         |
 | .**mergePath**(**api**:_string_):_string_                        |   get full path    |         |
 

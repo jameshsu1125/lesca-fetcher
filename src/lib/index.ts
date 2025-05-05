@@ -44,13 +44,19 @@ const setJWT = (jwt: string) => {
   headers.Authorization = `Bearer ${jwt}`;
 };
 
+const setHeader = (property: { [k: string]: string }) => {
+  headers = {
+    ...headers,
+    ...property,
+  };
+};
+
 export const mergePath = (api: String = '/api') => {
   return api.slice(0, 1) === '/' ? `${host}${api}` : `${host}/${api}`;
 };
 
 const post = <T>(api: String = '/api', data: Object) => {
   const method = 'POST';
-
   let body: any = JSON.stringify(data);
   if (headers['Content-Type'] === contentType.URL_ENCODED) {
     body = Object.entries(data)
@@ -115,6 +121,7 @@ const Fetcher = {
   post,
   get,
   setJWT,
+  setHeader,
 };
 
 export default Fetcher;

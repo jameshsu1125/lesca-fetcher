@@ -15,6 +15,11 @@ const postBody = {
 
 Fetcher.install(installConfig);
 
+Fetcher.setHeader({
+  user: 'test',
+  password: '123456',
+});
+
 const Demo = () => {
   const [postRespone, setPostRespone] = useState({});
   useEffect(() => {}, []);
