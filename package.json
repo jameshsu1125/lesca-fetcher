@@ -1,6 +1,6 @@
 {
   "name": "lesca-fetcher",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Integrate fetch for easier use",
   "main": "lib/index.js",
   "scripts": {
@@ -27,6 +27,7 @@
     "@babel/preset-env": "^7.23.5",
     "@babel/preset-react": "^7.23.3",
     "@babel/preset-typescript": "^7.23.3",
+    "@babel/runtime": "^7.23.5",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.19",
@@ -55,8 +56,5 @@
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
-  "author": "jamehsu1125 <jameshsu1125@gmail.com>",
-  "dependencies": {
-    "@babel/runtime": "^7.23.5"
-  }
+  "author": "jamehsu1125 <jameshsu1125@gmail.com>"
 }
