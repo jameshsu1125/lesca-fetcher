@@ -1,11 +1,12 @@
 {
-  "name": "template-npm-vite",
+  "name": "lesca-fetcher",
   "private": false,
-  "description": "xxxxx",
-  "version": "0.0.0",
+  "description": "integrate fetch for easier use",
+  "version": "2.0.0",
   "type": "module",
   "keywords": [
-    "lesca"
+    "lesca",
+    "fetch"
   ],
   "files": [
     "lib"
