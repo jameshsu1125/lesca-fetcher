@@ -1,23 +1,4 @@
-export enum contentType {
-  URL_ENCODED = 'application/x-www-form-urlencoded; charset=UTF-8',
-  JSON = 'application/json;charset=utf-8',
-}
-
-export enum formatType {
-  string = 0,
-  JSON = 1,
-}
-
-type Headers = {
-  'Content-Type': contentType;
-  Authorization?: string;
-};
-
-type Config = {
-  hostUrl: string;
-  contentType: contentType;
-  formatType: formatType;
-};
+import { Config, contentType, formatType } from './type';
 
 const defaultConfig: Config = {
   hostUrl: 'https://jsonplaceholder.typicode.com/todos/1',
@@ -26,7 +7,7 @@ const defaultConfig: Config = {
 };
 
 let host: string;
-let headers: Headers;
+let headers: { [key: string]: string };
 let format: formatType;
 
 const install = (setting: Config) => {
