@@ -7,7 +7,7 @@ const defaultConfig: Config = {
 };
 
 let host: string;
-let headers: { [key: string]: string };
+let headers: Headers;
 let format: formatType;
 
 const install = (setting: Config) => {
@@ -16,20 +16,19 @@ const install = (setting: Config) => {
 
   host = hostUrl.slice(-1) === '/' ? hostUrl.slice(0, -1) : hostUrl;
   format = formatType;
-  headers = {
+  headers = new Headers({
     'Content-Type': contentType,
-  };
+  });
 };
 
 const setJWT = (jwt: string) => {
-  headers.Authorization = `Bearer ${jwt}`;
+  headers.set('Authorization', `Bearer ${jwt}`);
 };
 
 const setHeader = (property: { [k: string]: string }) => {
-  headers = {
-    ...headers,
-    ...property,
-  };
+  Object.entries(property).forEach(([key, value]) => {
+    headers.set(key, value);
+  });
 };
 
 export const mergePath = (api: String = '/api') => {
@@ -39,7 +38,7 @@ export const mergePath = (api: String = '/api') => {
 const post = <T>(api: String = '/api', data: Object) => {
   const method = 'POST';
   let body: any = JSON.stringify(data);
-  if (headers['Content-Type'] === contentType.URL_ENCODED) {
+  if (headers.get('Content-Type') === contentType.URL_ENCODED) {
     body = Object.entries(data)
       .map((e) => `${e[0]}=${e[1]}`)
       .join('&');
