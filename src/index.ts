@@ -45,8 +45,12 @@ const setHeader = (property: { [k: string]: string }) => {
   });
 };
 
-export const mergePath = (api: String = '/api') => {
-  return api.slice(0, 1) === '/' ? `${host}${api}` : `${host}/${api}`;
+export const mergePath = (api: String = '/api', hostOverride?: string) => {
+  const currentHost = hostOverride ? hostOverride : host;
+  const currentApiWithSlash = api.slice(0, 1) === '/' ? api : `/${api}`;
+  const currentHostWithoutSlash = currentHost.slice(-1) === '/' ? currentHost.slice(0, -1) : currentHost;
+
+  return `${currentHostWithoutSlash}${currentApiWithSlash}`;
 };
 
 const post = <T>(api: String = '/api', data: Object) => {
