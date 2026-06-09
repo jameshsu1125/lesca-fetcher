@@ -1,10 +1,22 @@
-import YourClass from '.';
+import Fetcher, { contentType, formatType, mergePath } from '.';
 
 const createApp = () => {
-  return new Promise<HTMLElement>((resolve) => {
+  return new Promise<HTMLElement>(async (resolve) => {
     const app = document.createElement('div');
     app.innerHTML = 'Hello, World!';
-    console.log(YourClass);
+    Fetcher.install({
+      hostUrl: 'https://uatservice.kgifund.com.tw/mine/api/',
+      contentType: contentType.JSON,
+      formatType: formatType.JSON,
+    });
+
+    const response = await Fetcher.post('member/sign-in', {
+      credential: 'Ab123456789',
+      email: 'test@test.com',
+    });
+
+    console.log(response);
+
     resolve(app);
   });
 };
