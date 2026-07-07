@@ -24,6 +24,8 @@ let host: string;
 let headers: Headers;
 let format: formatType;
 
+const options: Record<string, string | number | boolean | object> = {};
+
 const install = (setting: Config) => {
   const set = { ...defaultConfig, ...setting };
   const { hostUrl, contentType, formatType } = set;
@@ -42,6 +44,12 @@ const setJWT = (jwt: string) => {
 const setHeader = (property: { [k: string]: string }) => {
   Object.entries(property).forEach(([key, value]) => {
     headers.set(key, value);
+  });
+};
+
+const setOptions = (property: Record<string, string | number | boolean | object>) => {
+  Object.entries(property).forEach(([key, value]) => {
+    options[key] = value;
   });
 };
 
@@ -65,7 +73,7 @@ const post = <T>(api: string = '/api', data: object) => {
 
   if (format === formatType.JSON) {
     return new Promise<T>((resolve, reject) => {
-      fetch(mergePath(api), { method, body, headers })
+      fetch(mergePath(api), { ...options, method, body, headers })
         .then((res) => {
           res
             .json()
@@ -76,7 +84,7 @@ const post = <T>(api: string = '/api', data: object) => {
     });
   } else {
     return new Promise<string>((resolve, reject) => {
-      fetch(mergePath(api), { method, body, headers })
+      fetch(mergePath(api), { ...options, method, body, headers })
         .then((res) => {
           res
             .text()
@@ -92,7 +100,7 @@ const get = <T>(api: string = '/api') => {
   const method = 'GET';
   if (format === formatType.JSON) {
     return new Promise<T>((resolve, reject) => {
-      fetch(mergePath(api), { method, headers })
+      fetch(mergePath(api), { ...options, method, headers })
         .then((res) => {
           res
             .json()
@@ -103,7 +111,7 @@ const get = <T>(api: string = '/api') => {
     });
   } else {
     return new Promise<string>((resolve, reject) => {
-      fetch(mergePath(api), { method, headers })
+      fetch(mergePath(api), { ...options, method, headers })
         .then((res) => {
           res
             .text()
@@ -115,12 +123,11 @@ const get = <T>(api: string = '/api') => {
   }
 };
 
-const Fetcher = {
+export const Fetcher = {
   install,
   post,
   get,
   setJWT,
   setHeader,
+  setOptions,
 };
-
-export default Fetcher;

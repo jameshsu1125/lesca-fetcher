@@ -1,4 +1,4 @@
-import Fetcher, { contentType, formatType, mergePath } from '.';
+import { Fetcher, contentType, formatType, mergePath } from '.';
 
 const createApp = () => {
   return new Promise<HTMLElement>(async (resolve) => {
