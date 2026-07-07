@@ -11,11 +11,11 @@ export type Config = {
     contentType: contentType;
     formatType: formatType;
 };
-export declare const mergePath: (api?: String) => string;
+export declare const mergePath: (api?: string, hostOverride?: string) => string;
 declare const Fetcher: {
     install: (setting: Config) => void;
-    post: <T>(api: String | undefined, data: Object) => Promise<T> | Promise<string>;
-    get: <T>(api?: String) => Promise<string> | Promise<T>;
+    post: <T>(api: string | undefined, data: object) => Promise<T> | Promise<string>;
+    get: <T>(api?: string) => Promise<string> | Promise<T>;
     setJWT: (jwt: string) => void;
     setHeader: (property: {
         [k: string]: string;

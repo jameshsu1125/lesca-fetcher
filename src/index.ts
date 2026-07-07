@@ -45,17 +45,18 @@ const setHeader = (property: { [k: string]: string }) => {
   });
 };
 
-export const mergePath = (api: String = '/api', hostOverride?: string) => {
+export const mergePath = (api: string = '/api', hostOverride?: string) => {
   const currentHost = hostOverride ? hostOverride : host;
   const currentApiWithSlash = api.slice(0, 1) === '/' ? api : `/${api}`;
-  const currentHostWithoutSlash = currentHost.slice(-1) === '/' ? currentHost.slice(0, -1) : currentHost;
+  const currentHostWithoutSlash =
+    currentHost.slice(-1) === '/' ? currentHost.slice(0, -1) : currentHost;
 
   return `${currentHostWithoutSlash}${currentApiWithSlash}`;
 };
 
-const post = <T>(api: String = '/api', data: Object) => {
+const post = <T>(api: string = '/api', data: object) => {
   const method = 'POST';
-  let body: any = JSON.stringify(data);
+  let body: string = JSON.stringify(data);
   if (headers.get('Content-Type') === contentType.URL_ENCODED) {
     body = Object.entries(data)
       .map((e) => `${e[0]}=${e[1]}`)
@@ -87,7 +88,7 @@ const post = <T>(api: String = '/api', data: Object) => {
   }
 };
 
-const get = <T>(api: String = '/api') => {
+const get = <T>(api: string = '/api') => {
   const method = 'GET';
   if (format === formatType.JSON) {
     return new Promise<T>((resolve, reject) => {
