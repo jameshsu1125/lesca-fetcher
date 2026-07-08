@@ -1,11 +1,18 @@
-import { Fetcher, contentType, formatType, mergePath } from '.';
+import Fetcher, { contentType, formatType, mergePath } from '.';
 
 const createApp = () => {
   return new Promise<HTMLElement>(async (resolve) => {
     const app = document.createElement('div');
     app.innerHTML = 'Hello, World!';
 
-    console.log(Fetcher, contentType, formatType, mergePath);
+    Fetcher.setOptions({ credentials: 'include' });
+    Fetcher.install({
+      contentType: contentType.JSON,
+      formatType: formatType.JSON,
+      hostUrl: 'https://jsonplaceholder.typicode.com/todos/1',
+    });
+
+    Fetcher.get('/api');
 
     resolve(app);
   });

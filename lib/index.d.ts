@@ -12,7 +12,7 @@ export type Config = {
     formatType: formatType;
 };
 export declare const mergePath: (api?: string, hostOverride?: string) => string;
-export declare const Fetcher: {
+declare const Fetcher: {
     install: (setting: Config) => void;
     post: <T>(api: string | undefined, data: object) => Promise<T> | Promise<string>;
     get: <T>(api?: string) => Promise<string> | Promise<T>;
@@ -22,3 +22,4 @@ export declare const Fetcher: {
     }) => void;
     setOptions: (property: Record<string, string | number | boolean | object>) => void;
 };
+export default Fetcher;

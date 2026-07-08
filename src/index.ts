@@ -100,6 +100,8 @@ const get = <T>(api: string = '/api') => {
   const method = 'GET';
   if (format === formatType.JSON) {
     return new Promise<T>((resolve, reject) => {
+      console.log({ ...options, method, headers });
+
       fetch(mergePath(api), { ...options, method, headers })
         .then((res) => {
           res
@@ -123,7 +125,7 @@ const get = <T>(api: string = '/api') => {
   }
 };
 
-export const Fetcher = {
+const Fetcher = {
   install,
   post,
   get,
@@ -131,3 +133,5 @@ export const Fetcher = {
   setHeader,
   setOptions,
 };
+
+export default Fetcher;
